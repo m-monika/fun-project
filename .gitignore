@@ -35,7 +35,7 @@
 /backend/app/.php-cs-fixer.cache
 ###< backend-cs-fixer/shim ###
 
-/backend/php/errors/php-error.log
+/backend/php/logs/php-error.log
 
 /backend/nginx/logs/access.log
 /backend/nginx/logs/error.log
