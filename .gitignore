@@ -1,38 +1,36 @@
-/php/app/.env
-/php/app/.env.dev
+/backend/app/.gitignore
+/backend/app/.env
+/backend/app/.env.dev
 # Cache and logs (Symfony2)
-/php/app/cache/*
-/php/app/logs/*
-!php/app/cache/.gitkeep
-!php/app/logs/.gitkeep
+/backend/app/cache/*
+/backend/app/logs/*
+!backend/app/cache/.gitkeep
+!backend/app/logs/.gitkeep
 
 # Cache, session files and logs (Symfony3)
-/php/app/var/cache/*
-/php/app/var/logs/*
-/php/app/var/sessions/*
-!php/app/var/cache/.gitkeep
-!php/app/var/logs/.gitkeep
-!php/app/var/sessions/.gitkeep
+/backend/app/var/cache/*
+/backend/app/var/logs/*
+/backend/app/var/sessions/*
+!backend/app/var/cache/.gitkeep
+!backend/app/var/logs/.gitkeep
+!backend/app/var/sessions/.gitkeep
 
 # Logs (Symfony4)
-/php/app/var/log/*
-!php/app/var/log/.gitkeep
+/backend/app/var/log/*
+!backend/app/var/log/.gitkeep
 
 # Parameters
-/php/app/config/parameters.yml
-/php/app/config/parameters.ini
+/backend/app/config/parameters.yml
+/backend/app/config/parameters.ini
 
 # Managed by Composer
-/php/app/bootstrap.php.cache
-/php/app/var/bootstrap.php.cache
-/php/app/bin/*
-!php/app/bin/composer
-!php/app/bin/console
-!php/app/bin/symfony_requirements
-/php/app/vendor/
+/backend/app/bin/*
+!backend/app/bin/composer
+!backend/app/bin/console
+!backend/app/bin/symfony_requirements
+/backend/app/vendor/
 
-###> php-cs-fixer/shim ###
-/php/app/.php-cs-fixer.php
-/php/app/.php-cs-fixer.dist.php
-/php/app/.php-cs-fixer.cache
-###< php-cs-fixer/shim ###
+###> backend-cs-fixer/shim ###
+/backend/app/.php-cs-fixer.dist.php
+/backend/app/.php-cs-fixer.cache
+###< backend-cs-fixer/shim ###

@@ -383,7 +383,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *         with_constructor_extractor?: bool, // Registers the constructor extractor.
  *     },
  *     cache?: array{ // Cache configuration
- *         prefix_seed?: scalar|null, // Used to namespace cache keys when using several apps with the same shared backend. // Default: "_%kernel.project_dir%.%kernel.container_class%"
+ *         prefix_seed?: scalar|null, // Used to namespace cache keys when using several apps with the same shared php. // Default: "_%kernel.project_dir%.%kernel.container_class%"
  *         app?: scalar|null, // App related cache pools configuration. // Default: "cache.adapter.filesystem"
  *         system?: scalar|null, // System related cache pools configuration. // Default: "cache.adapter.system"
  *         directory?: scalar|null, // Default: "%kernel.share_dir%/pools/app"
