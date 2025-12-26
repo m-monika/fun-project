@@ -11,6 +11,7 @@
         "symfony/dotenv": "7.4.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.4.*",
+        "symfony/monolog-bundle": "^3.0|^4.0",
         "symfony/runtime": "7.4.*",
         "symfony/serializer": "^7.4",
         "symfony/yaml": "7.4.*"
@@ -66,6 +67,9 @@
         }
     },
     "require-dev": {
-        "php-cs-fixer/shim": "^3.92"
+        "php-cs-fixer/shim": "^3.92",
+        "symfony/debug-bundle": "7.4.*",
+        "symfony/stopwatch": "7.4.*",
+        "symfony/web-profiler-bundle": "7.4.*"
     }
 }
