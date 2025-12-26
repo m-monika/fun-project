@@ -1,5 +1,5 @@
 /php/app/.env
-/php/app/.env.test
+/php/app/.env.dev
 # Cache and logs (Symfony2)
 /php/app/cache/*
 /php/app/logs/*
@@ -31,3 +31,8 @@
 !php/app/bin/symfony_requirements
 /php/app/vendor/
 
+###> php-cs-fixer/shim ###
+/php/app/.php-cs-fixer.php
+/php/app/.php-cs-fixer.dist.php
+/php/app/.php-cs-fixer.cache
+###< php-cs-fixer/shim ###
