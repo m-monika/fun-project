@@ -26,5 +26,7 @@ RUN apt-get update \
         opcache \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /srv/logs/php
+RUN mkdir -p /srv/logs/nginx
 # Set working directory
 WORKDIR /srv/app
