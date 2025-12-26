@@ -18,5 +18,7 @@ services:
     volumes:
       - ./backend/app:/srv/app:ro
       - ./backend/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./backend/nginx/logs/error.log:/srv/logs/nginx/error.log:rw
+      - ./backend/nginx/logs/access.log:/srv/logs/nginx/access.log:rw
     depends_on:
       - php
