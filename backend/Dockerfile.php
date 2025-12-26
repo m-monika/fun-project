@@ -16,6 +16,7 @@ RUN apt-get update \
         libxml2-dev \
         zlib1g-dev \
         libpq-dev \
+        logrotate \
     && docker-php-ext-install -j$(nproc) \
         intl \
         mbstring \
@@ -27,6 +28,5 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /srv/logs/php
-RUN mkdir -p /srv/logs/nginx
 # Set working directory
 WORKDIR /srv/app

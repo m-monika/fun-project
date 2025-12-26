@@ -4,15 +4,18 @@ services:
   php:
     build:
       context: .
-      dockerfile: ./backend/Dockerfile
+      dockerfile: backend/Dockerfile.php
     volumes:
       - ./backend/app:/srv/app:rw
       - ./backend/php/php.ini:/usr/local/etc/php/conf.d/99-security.ini:ro
       - ./backend/php/logs/php-error.log:/srv/logs/php/php-error.log:rw
+      - ./backend/php/logrotate:/etc/logrotate.d/funproject-php:ro
     working_dir: /srv/app
 
   nginx:
-    image: nginx:1.27-alpine
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.nginx
     ports:
       - "8000:80"
     volumes:
@@ -20,5 +23,6 @@ services:
       - ./backend/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./backend/nginx/logs/error.log:/srv/logs/nginx/error.log:rw
       - ./backend/nginx/logs/access.log:/srv/logs/nginx/access.log:rw
+      - ./backend/nginx/logrotate:/etc/logrotate.d/funproject-nginx:ro
     depends_on:
       - php

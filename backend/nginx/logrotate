@@ -1,0 +1,9 @@
+/srv/logs/php/access.log
+/srv/logs/php/error.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
