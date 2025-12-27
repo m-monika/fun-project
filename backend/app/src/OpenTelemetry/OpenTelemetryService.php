@@ -17,7 +17,7 @@ class OpenTelemetryService
     private TracerProvider $tracerProvider;
     private TracerInterface $tracer;
 
-    public function __construct()
+    public function __construct(private string $endpoint)
     {
         $resource = ResourceInfo::create(
             Attributes::create([
@@ -26,7 +26,7 @@ class OpenTelemetryService
         );
 
         $transport = (new OtlpHttpTransportFactory())->create(
-            endpoint: 'http://otel-collector:4318/v1/traces',
+            endpoint: $this->endpoint,
             contentType: 'application/x-protobuf'
         );
 
