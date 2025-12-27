@@ -4,7 +4,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: backend/Dockerfile.php
+      dockerfile: backend/Dockerfile_php
     volumes:
       - ./backend/app:/srv/app:rw
       - ./backend/php/php.ini:/usr/local/etc/php/conf.d/99-security.ini:ro
@@ -29,7 +29,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: backend/Dockerfile.nginx
+      dockerfile: backend/Dockerfile_nginx
     ports:
       - "8000:80"
     volumes:
