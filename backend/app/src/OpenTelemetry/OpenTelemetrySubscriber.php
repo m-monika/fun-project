@@ -5,6 +5,7 @@ namespace App\OpenTelemetry;
 use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\Context\Context;
 use OpenTelemetry\Context\ScopeInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -41,7 +42,10 @@ class OpenTelemetrySubscriber implements EventSubscriberInterface
             ->getTracer()
             ->spanBuilder($request->getMethod().' '.$request->getPathInfo())
             ->setSpanKind(SpanKind::KIND_SERVER)
+            ->setParent(Context::getCurrent())
             ->startSpan();
+        $this->span->setAttribute('http.method', $request->getMethod());
+        $this->span->setAttribute('http.route', $request->getPathInfo());
 
         $this->scope = $this->span->activate();
     }
@@ -59,6 +63,7 @@ class OpenTelemetrySubscriber implements EventSubscriberInterface
                 ? StatusCode::STATUS_OK
                 : StatusCode::STATUS_ERROR
         );
+        $this->span->setAttribute('http.status_code', $response->getStatusCode());
 
         $this->span->end();
         $this->scope->detach();
