@@ -11,6 +11,20 @@ services:
       - ./backend/php/logs/php-error.log:/srv/logs/php/php-error.log:rw
       - ./backend/php/logrotate:/etc/logrotate.d/funproject-php:ro
     working_dir: /srv/app
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318/v1/traces
+    depends_on:
+      - otel-collector
+
+  otel-collector:
+    image: otel/opentelemetry-collector
+    container_name: otel-collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./otel-collector/otel-collector.yaml:/etc/otelcol/config.yaml
+      - ./otel-collector/data:/var/log/otel
+    ports:
+      - "4318:4318"
 
   nginx:
     build:

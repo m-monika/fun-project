@@ -17,14 +17,17 @@ RUN apt-get update \
         zlib1g-dev \
         libpq-dev \
         logrotate \
+        libcurl4-openssl-dev \
     && docker-php-ext-install -j$(nproc) \
         intl \
         mbstring \
         pdo \
+        curl \
         pdo_mysql \
         zip \
         xml \
         opcache \
+    && docker-php-ext-enable curl \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /srv/logs/php
