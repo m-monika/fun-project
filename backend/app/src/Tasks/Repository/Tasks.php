@@ -2,47 +2,60 @@
 
 namespace App\Tasks\Repository;
 
+use Doctrine\DBAL\Connection;
+
 class Tasks
 {
+    public function __construct(
+        private Connection $connection
+    ) {
+    }
+
     public function getAllTasks(): array
     {
-        // TODO
+        $sql = 'SELECT id, title, description, completed FROM tasks';
 
-        return [
-            ['id' => 1, 'title' => 'Task 1', 'completed' => false],
-            ['id' => 2, 'title' => 'Task 2', 'completed' => true],
-            ['id' => 3, 'title' => 'Task 3', 'completed' => false],
-        ];
+        return $this->connection->fetchAllAssociative($sql);
     }
 
     public function find(int $id): ?array
     {
-        // TODO
-        if ($id < 1 || $id > 3) {
-            return null;
-        }
+        $sql = 'SELECT id, title, description, completed FROM tasks WHERE id = :id';
 
-        return ['id' => $id, 'title' => 'Task '.$id, 'completed' => false];
+        $task = $this->connection->fetchAssociative($sql, [
+            'id' => $id,
+        ]);
+
+        return $task ?: null;
     }
 
     public function addTask(string $task, string $description): bool
     {
-        // TODO
-
-        return true;
+        return (bool) $this->connection->insert('tasks', [
+            'title' => $task,
+            'description' => $description,
+            'completed' => 0,
+        ]);
     }
 
     public function updateTask(int $id, string $task, string $description): bool
     {
-        // TODO
-
-        return true;
+        return (bool) $this->connection->update(
+            'tasks',
+            [
+                'title' => $task,
+                'description' => $description,
+            ],
+            [
+                'id' => $id,
+            ]
+        );
     }
 
     public function deleteTask(int $id): bool
     {
-        // TODO
-
-        return true;
+        return (bool) $this->connection->delete('tasks', [
+            'id' => $id,
+        ]);
     }
 }
