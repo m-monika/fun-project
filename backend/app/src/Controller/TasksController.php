@@ -24,7 +24,7 @@ class TasksController extends AbstractController
         $json = $tasks->find($id);
 
         if (!$json) {
-            throw $this->createNotFoundException("Not found");
+            throw $this->createNotFoundException('Not found');
         }
 
         return $this->json($json);
@@ -33,6 +33,6 @@ class TasksController extends AbstractController
     #[Route('/tasks', methods: ['POST'])]
     public function create(Request $request, Tasks $tasks): Response
     {
-        return $this->json(["message" => "!!TODO create task!!"]);
+        return $this->json(['message' => '!!TODO create task!!']);
     }
 }
