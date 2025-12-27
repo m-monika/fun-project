@@ -61,3 +61,17 @@ services:
       - ./backend/nginx/logrotate:/etc/logrotate.d/funproject-nginx:ro
     depends_on:
       - php
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: funproject-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
