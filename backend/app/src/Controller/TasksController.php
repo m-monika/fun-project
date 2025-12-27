@@ -30,6 +30,32 @@ class TasksController extends AbstractController
         return $this->json($json);
     }
 
+    #[Route('/tasks/{id<\d+>}', methods: ['DELETE'])]
+    public function delete(int $id, Tasks $tasks): Response
+    {
+        $task = $tasks->find($id);
+        if (!$task) {
+            return $this->json(
+                ['error' => 'Task not found'],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        $deleted = $tasks->deleteTask($id);
+
+        if (!$deleted) {
+            return $this->json(
+                ['error' => 'Failed to delete task'],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+
+        return $this->json(
+            ['message' => 'Task deleted successfully'],
+            Response::HTTP_OK
+        );
+    }
+
     #[Route('/tasks', methods: ['POST'])]
     public function create(Request $request, Tasks $tasks): Response
     {
